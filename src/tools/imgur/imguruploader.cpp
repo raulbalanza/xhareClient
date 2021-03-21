@@ -36,7 +36,7 @@ ImgurUploader::ImgurUploader(const QPixmap& capture, QWidget* parent)
   : QWidget(parent)
   , m_pixmap(capture)
 {
-    setWindowTitle(tr("Upload to Imgur"));
+    setWindowTitle(tr("Upload to xhare"));
     setWindowIcon(QIcon(":img/app/flameshot.svg"));
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
@@ -78,9 +78,9 @@ void ImgurUploader::handleReply(QNetworkReply* reply)
         QJsonObject data = json[QStringLiteral("data")].toObject();
         m_imageURL.setUrl(data[QStringLiteral("link")].toString());
 
-        auto deleteToken = data[QStringLiteral("deletehash")].toString();
+        auto deleteToken = ""; // data[QStringLiteral("deletehash")].toString();
         m_deleteImageURL.setUrl(
-          QStringLiteral("https://imgur.com/delete/%1").arg(deleteToken));
+          QStringLiteral("https://xhare.it/delete/%1").arg(deleteToken));
 
         // save history
         QString imageName = m_imageURL.toString();
@@ -91,8 +91,8 @@ void ImgurUploader::handleReply(QNetworkReply* reply)
 
         // save image to history
         History history;
-        imageName = history.packFileName("imgur", deleteToken, imageName);
-        history.save(m_pixmap, imageName);
+        imageName = history.packFileName("xhare", deleteToken, imageName);
+        history.save(m_pixmap, imageName + QString(".png"));
 
         if (ConfigHandler().copyAndCloseAfterUploadEnabled()) {
             SystemNotification().sendMessage(

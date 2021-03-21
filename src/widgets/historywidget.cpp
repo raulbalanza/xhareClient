@@ -96,7 +96,12 @@ void HistoryWidget::addLine(const QString& path, const QString& fileName)
     History history;
     HISTORY_FILE_NAME unpackFileName = history.unpackFileName(fileName);
 
-    QString url = "https://imgur.com/" + unpackFileName.file;
+    QString url = "https://xhare.it/s/" + unpackFileName.file;
+
+    int dotIndex = unpackFileName.file.lastIndexOf(QString(".png"));
+    if (dotIndex != -1){
+        url = "https://xhare.it/s/" + unpackFileName.file.mid(0, dotIndex);
+    }
 
     // load pixmap
     QPixmap pixmap;
@@ -148,7 +153,7 @@ void HistoryWidget::addLine(const QString& path, const QString& fileName)
         this->close();
     });
 
-    // delete
+    // delete (only local)
     QPushButton* buttonDelete = new QPushButton;
     buttonDelete->setIcon(QIcon(":/img/material/black/delete.svg"));
     buttonDelete->setMinimumHeight(HISTORYPIXMAP_MAX_PREVIEW_HEIGHT);
@@ -159,13 +164,13 @@ void HistoryWidget::addLine(const QString& path, const QString& fileName)
                 this,
                 tr("Confirm to delete"),
                 tr("Are you sure you want to delete a screenshot from the "
-                   "latest uploads and server?"),
+                   "latest uploads? This will not delete it from the server."),
                 QMessageBox::Yes | QMessageBox::No)) {
             return;
         }
-        QDesktopServices::openUrl(
+        /*QDesktopServices::openUrl(
           QUrl(QStringLiteral("https://imgur.com/delete/%1")
-                 .arg(unpackFileName.token)));
+                 .arg(unpackFileName.token)));*/
         removeCacheFile(fullFileName);
         removeLayoutItem(phbl);
     });
