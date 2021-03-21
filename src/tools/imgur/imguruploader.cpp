@@ -129,18 +129,20 @@ void ImgurUploader::upload()
 
     QUrlQuery urlQuery;
     urlQuery.addQueryItem(QStringLiteral("title"),
-                          QStringLiteral("flameshot_screenshot"));
+                          QStringLiteral("xhare_screenshot"));
     QString description = FileNameHandler().parsedPattern();
     urlQuery.addQueryItem(QStringLiteral("description"), description);
 
-    QUrl url(QStringLiteral("https://api.imgur.com/3/image"));
+    QByteArray secure_hash = (QStringLiteral("xhare_screenshot")+description).toUtf8();
+    QString md5hash = QString(QCryptographicHash::hash(secure_hash,QCryptographicHash::Md5).toHex());
+    urlQuery.addQueryItem(QStringLiteral("hash"), md5hash);
+
+    QUrl url(QStringLiteral("https://xhare.it/upload_client.php"));
     url.setQuery(urlQuery);
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       "application/application/x-www-form-urlencoded");
-    request.setRawHeader(
-      "Authorization",
-      QStringLiteral("Client-ID %1").arg(IMGUR_CLIENT_ID).toUtf8());
+    request.setRawHeader("User-Agent", QStringLiteral("xhareClient").toUtf8());
 
     m_NetworkAM->post(request, byteArray);
 }
