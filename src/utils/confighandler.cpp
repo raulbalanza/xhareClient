@@ -128,7 +128,7 @@ void ConfigHandler::setSavePathFixed(bool savePathFixed)
 
 QColor ConfigHandler::uiMainColorValue()
 {
-    QColor res = QColor(116, 0, 150);
+    QColor res = QColor(48, 51, 61);
 
     if (m_settings.contains(QStringLiteral("uiColor"))) {
         QString hex = m_settings.value(QStringLiteral("uiColor")).toString();
@@ -147,7 +147,7 @@ void ConfigHandler::setUIMainColor(const QColor& c)
 
 QColor ConfigHandler::uiContrastColorValue()
 {
-    QColor res = QColor(39, 0, 50);
+    QColor res = QColor(44, 44, 44);
 
     if (m_settings.contains(QStringLiteral("contrastUiColor"))) {
         QString hex =
