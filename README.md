@@ -2,12 +2,12 @@
   <p>
     <h1>
       <a href="https://github.com/flameshot-org/flameshot">
-        <img src="data/img/app/org.flameshot.Flameshot.svg" alt="Flameshot" />
+        <img height="256" src="data/img/app/org.flameshot.Flameshot.svg" alt="Flameshot" />
       </a>
       <br />
-      Flameshot
+      xhareClient
     </h1>
-    <h4>Powerful yet simple to use screenshot software.</h4>
+    <h4>An open-source multiplatform screenshot uploader service.<br>Powered by <i>Flameshot</i></h4>
   </p>
   <p>
     <a href="https://github.com/flameshot-org/flameshot/actions?query=workflow%3APackaging%28Linux%29">
@@ -31,13 +31,6 @@
     <a href="https://flameshot.org">
       <img src="https://img.shields.io/github/release/flameshot-org/flameshot.svg?style=flat-square&label=docs" alt="Docs" />
     </a>
-    <br>
-    <a href="https://snapcraft.io/flameshot">
-      <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
-    </a>
-    <a href="https://flathub.org/apps/details/org.flameshot.Flameshot">
-      <img height="60" alt="Download on Flathub" src="https://flathub.org/assets/badges/flathub-badge-en.svg"/>
-    </a>
   </p>
 </div>
 
@@ -49,19 +42,22 @@
 
 ## Index
 
+- [Preview](#preview)
+- [Index](#index)
 - [Features](#features)
 - [Usage](#usage)
   - [CLI configuration](#cli-configuration)
   - [Config file](#config-file)
-- [Keyboard Shortcuts](#keyboard-shortcuts)
+- [Keyboard shortcuts](#keyboard-shortcuts)
   - [Local](#local)
   - [Global](#global)
     - [On KDE Plasma desktop](#on-kde-plasma-desktop)
-    - [On Ubuntu](#on-ubuntu-tested-on-1804)
+    - [On Ubuntu (Tested on 18.04)](#on-ubuntu-tested-on-1804)
 - [Considerations](#considerations)
 - [Installation](#installation)
-  - [Prebuilt Packages](#prebuilt-packages)
+  - [Prebuilt packages](#prebuilt-packages)
   - [Packages from Repository](#packages-from-repository)
+  - [Tray icon](#tray-icon)
 - [Compilation](#compilation)
   - [Dependencies](#dependencies)
     - [Compile-time](#compile-time)
@@ -70,13 +66,14 @@
     - [Debian](#debian)
     - [Fedora](#fedora)
     - [Arch](#arch)
+    - [MacOS](#macos)
   - [Build](#build)
   - [Install](#install)
-- [License](#license)
+- [Flameshot license](#flameshot-license)
 - [Privacy Policy](#privacy-policy)
 - [Code Signing Policy](#code-signing-policy)
-- [Contribute](#contribute)
-- [Acknowledgment](#acknowledgment)
+- [Authors](#authors)
+- [Credits and Acknowledgment](#credits-and-acknowledgment)
 
 ## Features
 
@@ -84,7 +81,7 @@
 - Easy to use.
 - In-app screenshot editing.
 - DBus interface.
-- Upload to Imgur.
+- Upload to xhare.
 
 ## Usage
 
@@ -139,13 +136,13 @@ Example commands:
 
 In case of doubt choose the first or the second command as shortcut in your favorite desktop environment.
 
-A systray icon will be in your system's panel while Flameshot is running.
+A systray icon will be in your system's panel while the application is running.
 Do a right click on the tray icon and you'll see some menu items to open the configuration window and the information window.
 Check out the About window to see all available shortcuts in the graphical capture mode.
 
 ### CLI configuration
 
-You can use the graphical menu to configure Flameshot, but alternatively you can use your terminal or scripts to do so.
+You can use the graphical menu to configure xhareClient, but alternatively you can use your terminal or scripts to do so.
 
 - Open the configuration menu:
 
@@ -207,7 +204,7 @@ These shortcuts are available in GUI mode:
 
 ### Global
 
-If you want use Flameshot as a default screenshot utility, chances are you want to launch it using the <kbd>Prt Sc</kbd> key. Flameshot doesn't yet offer a fully-automated option to do so, but you can configure your system to do so.
+If you want use xhareClient as a default screenshot utility, chances are you want to launch it using the <kbd>Prt Sc</kbd> key. xhareClient doesn't yet offer a fully-automated option to do so, but you can configure your system to do so.
 
 #### On KDE Plasma desktop
 
@@ -215,7 +212,7 @@ To make configuration easier, there's a [file](docs/shortcuts-config/flameshot-s
 
 |  Keys                                                  |  Description                                                                       |
 |---                                                     |---                                                                                 |
-| <kbd>Prt Sc</kbd>                                      | Start the Flameshot screenshot tool and take a screenshot                          |
+| <kbd>Prt Sc</kbd>                                      | Start the xhareClient screenshot tool and take a screenshot                          |
 | <kbd>Ctrl</kbd> + <kbd>Prt Sc</kbd>                    | Wait for 3 seconds, then start the Flameshot screenshot tool and take a screenshot |
 | <kbd>Shift</kbd> + <kbd>Prt Sc</kbd>                   | Take a full-screen (all monitors) screenshot and save it                           |
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Prt Sc</kbd> | Take a full-screen (all monitors) screenshot and copy it to the clipboard          |
@@ -224,7 +221,7 @@ If you don't like the defaults, you can change them manually later.
 
 Steps for using the configuration:
 
-1. The configuration file configures shortcuts so that Flameshot automatically saves (without opening the save dialog) screenshots to `~/Pictures/Screenshots` folder. Make sure you have that folder by running the following command:
+1. The configuration file configures shortcuts so that xhareClient automatically saves (without opening the save dialog) screenshots to `~/Pictures/Screenshots` folder. Make sure you have that folder by running the following command:
 
     ```shell
     mkdir -p ~/Pictures/Screenshots
@@ -238,14 +235,14 @@ Steps for using the configuration:
     wget https://raw.githubusercontent.com/flameshot-org/flameshot/master/docs/shortcuts-config/flameshot-shortcuts-kde
     ```
 3. Go to _System Settings_ → _Shortcuts_ → _Custom Shortcuts_.
-4. If there's one, you'll need to disable an entry for Spectacle, the default KDE screenshot utility first because its shortcuts might collide with Flameshot's ones; so, just uncheck the _Spectacle_ entry.
+4. If there's one, you'll need to disable an entry for Spectacle, the default KDE screenshot utility first because its shortcuts might collide with xhareClient's ones; so, just uncheck the _Spectacle_ entry.
 5. Click _Edit_ → _Import..._, navigate to the Desktop folder (or wherever you saved the configuration file) and open the configuration file.
-6. Now the Flameshot entry should appear in the list. Click _Apply_ to apply the changes.
+6. Now the xhareClient entry should appear in the list. Click _Apply_ to apply the changes.
 7. If you want to change the defaults, you can expand the entry, select the appropriate action and modify it as you wish; the process is pretty mush self-explanatory.
 
 #### On Ubuntu (Tested on 18.04)
 
-To use Flameshot instead of the default screenshot application in Ubuntu we need to remove the binding on <kbd>Prt Sc</kbd> key, and then create a new binding for `/usr/bin/flameshot gui` ([adaptated](https://askubuntu.com/posts/1039949/revisions) from [Pavel's answer on AskUbuntu](https://askubuntu.com/revisions/1036473/1)). 
+To use xhareClient instead of the default screenshot application in Ubuntu we need to remove the binding on <kbd>Prt Sc</kbd> key, and then create a new binding for `/usr/bin/flameshot gui` ([adaptated](https://askubuntu.com/posts/1039949/revisions) from [Pavel's answer on AskUbuntu](https://askubuntu.com/revisions/1036473/1)). 
 
 1. Remove the binding on <kbd>Prt Sc</kbd> using the following command.
 
@@ -259,7 +256,7 @@ To use Flameshot instead of the default screenshot application in Ubuntu we need
 
 4. Then click "_Set Shortcut.._" and press <kbd>Prt Sc</kbd>. This will show as "_print_".
 
-Now every time you press <kbd>Prt Sc</kbd>, it will start the Flameshot GUI instead of the default application.
+Now every time you press <kbd>Prt Sc</kbd>, it will start the xhareClient GUI instead of the default application.
 
 ## Considerations
 
@@ -269,17 +266,17 @@ Now every time you press <kbd>Prt Sc</kbd>, it will start the Flameshot GUI inst
 
 - Press <kbd>Enter</kbd> or <kbd>Ctrl</kbd> + <kbd>C</kbd> when you are in a capture mode and you don't have an active selection and the whole desktop will be copied to your clipboard. Pressing <kbd>Ctrl</kbd> + <kbd>S</kbd> will save your capture to a file. Check the [Shortcuts](#keyboard-shortcuts) for more information.
 
-- Flameshot works best with a desktop environment that includes D-Bus. See this [article](https://wiki.archlinux.org/index.php/Flameshot#Troubleshooting) for tips on using Flameshot in a minimal window manager (dwm, i3, xmonad, etc).
+- xhareClient works best with a desktop environment that includes D-Bus. See this [article](https://wiki.archlinux.org/index.php/Flameshot#Troubleshooting) for tips on using xhareClient in a minimal window manager (dwm, i3, xmonad, etc).
 
-- In order to speed up the first launch of Flameshot (D-Bus init of the app can be slow), consider starting the application automatically on boot.
-    - Quick tip: If you don't have Flameshot to autostart at boot and you want to set keyboard shortcut, use the following as the command for the keybinding:
+- In order to speed up the first launch of the application (D-Bus init of the app can be slow), consider starting the application automatically on boot.
+    - Quick tip: If you don't have xhareClient to autostart at boot and you want to set keyboard shortcut, use the following as the command for the keybinding:
     ```sh
     ( flameshot &; ) && ( sleep 0.5s && flameshot gui )
     ```
 
 ## Installation
 
-Flameshot can be installed on Linux, Microsoft Windows, and macOS.
+xhareClient can be installed on Linux, Microsoft Windows, and macOS.
 
 ### Prebuilt packages
 
@@ -314,7 +311,7 @@ There are also options for installing on macOS:
 
 ### Tray icon
 
-**Note** that for the Flameshot icon to appear in your tray area, you should have a systray software installed. This is especially true for users who use minimal [window managers](https://wiki.archlinux.org/index.php/window_manager) such as [dwm](https://dwm.suckless.org/). In some [Desktop Environment](https://wiki.archlinux.org/index.php/Desktop_environment) installations (e.g Gnome), the systray might be missing and you can install an application or plugin (e.g [Gnome shell extension](https://extensions.gnome.org/extension/1503/tray-icons/)) to add the systray to your setup. It has been [reported](https://github.com/flameshot-org/flameshot/issues/1009#issuecomment-700781081)) that icon of some softwares, including Flameshot, does not show in [gnome-shell-extension-appindicator](https://github.com/ubuntu/gnome-shell-extension-appindicator).
+**Note** that for the xhareClient icon to appear in your tray area, you should have a systray software installed. This is especially true for users who use minimal [window managers](https://wiki.archlinux.org/index.php/window_manager) such as [dwm](https://dwm.suckless.org/). In some [Desktop Environment](https://wiki.archlinux.org/index.php/Desktop_environment) installations (e.g Gnome), the systray might be missing and you can install an application or plugin (e.g [Gnome shell extension](https://extensions.gnome.org/extension/1503/tray-icons/)) to add the systray to your setup. It has been [reported](https://github.com/flameshot-org/flameshot/issues/1009#issuecomment-700781081)) that icon of some softwares, including xhareClient, does not show in [gnome-shell-extension-appindicator](https://github.com/ubuntu/gnome-shell-extension-appindicator).
 
 
 Alternatively, in case you don't want to have a systray, you can always call Flameshot from the terminal. See [Usage section](#usage).
@@ -425,9 +422,9 @@ When `make` command completed you can launch flameshot from `project_folder/buil
 Simply use `make install` with privileges. 
 Note: If you install from source, there is no uninstaller, you will need to manually remove the files. Consider using [CMAKE_INSTALL_PREFIX](https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_PREFIX.html) to install to a custom location for easy removal. 
 
-## License
+## Flameshot license
 - The main code is licensed under [GPLv3](LICENSE)
-- The logo of Flameshot is licensed under [Free Art License v1.3](img/app/flameshotLogoLicense.txt)
+- The original logo of Flameshot is licensed under [Free Art License v1.3](img/app/flameshotLogoLicense.txt)
 - The button icons are licensed under Apache License 2.0. See: https://github.com/google/material-design-icons
 - The code at capture/capturewidget.cpp is based on https://github.com/ckaiser/Lightscreen/blob/master/dialogs/areadialog.cpp (GPLv2)
 - The code at capture/capturewidget.h is based on https://github.com/ckaiser/Lightscreen/blob/master/dialogs/areadialog.h (GPLv2)
@@ -439,23 +436,17 @@ Info: If I take code from your project and that implies a relicense to GPLv3, yo
 ## Privacy Policy
 This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it.
 
-
 ## Code Signing Policy
 Free code signing provided by [SignPath.io](https://signpath.io/), certificate by [SignPath Foundation](https://signpath.org/).
 
 Code signing is currently a manual process so not every patch release will be signed. 
 
-## Contribute
-If you want to contribute check the [CONTRIBUTING.md](docs/CONTRIBUTING.md)
+## Authors
+- **Flameshot contributors** ([flameshot.org](https://flameshot.org/)): application development and maintenance
+- **Raúl Balanzá** (contact@raulbalanza.me): *xhare* upload features and minor tweaks
 
-## Acknowledgment
-Thanks to those who have shown interest in the early development process:
-- [lupoDharkael](https://github.com/lupoDharkael)
-- [Cosmo](https://github.com/philpem)
-- [XerTheSquirrel](https://github.com/XerTheSquirrel)
-- [The members of Sugus GNU/Linux](https://github.com/SUGUS-GNULinux)
-- ismatori
+## Credits and Acknowledgment
+Most of the source code of this application belongs to the software from which it is forked.
+All the credit about the full feature set of this software except everything related with *xhare* must be given to the developers of **Flameshot**.
 
-Thanks to sponsors:
-- JetBrains
-- SignPath
+If you want to contribute, you should check the original project's [CONTRIBUTING.md](https://github.com/flameshot-org/flameshot/blob/master/docs/CONTRIBUTING.md)
